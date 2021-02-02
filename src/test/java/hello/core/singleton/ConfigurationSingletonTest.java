@@ -30,4 +30,13 @@ public class ConfigurationSingletonTest {
         Assertions.assertThat(memberService.memberRepository()).isSameAs(memberRepository);
         Assertions.assertThat(orderService.memberRepository()).isSameAs(memberRepository);
     }
+
+    @Test
+    void configurationDeep() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        // 결과값 : bean = class hello.core.AppConfig$$EnhancerBySpringCGLIB$$40054ac9
+        System.out.println("bean = " + bean.getClass());
+    }
 }
